@@ -1,18 +1,37 @@
 "use client";
-import React, { useEffect } from "react";
-import Link from "next/link";
+import React, { useEffect } from "react"; // Import useEffect form React
+import Link from "next/link"; // Import link from next/Link 
+// Import needed packages for auth
 import {
   signInWithGoogle,
   signOut,
   onIdTokenChanged,
 } from "@/src/lib/firebase/auth.js";
-import { addFakeRestaurantsAndReviews } from "@/src/lib/firebase/firestore.js";
-import { setCookie, deleteCookie } from "cookies-next";
+import { addFakeRestaurantsAndReviews } from "@/src/lib/firebase/firestore.js"; // Import of filler from firestore.js
+import { setCookie, deleteCookie } from "cookies-next"; // Import of Cookie functions from cookies-next
 
+// Initiate the Cookies for the user authentication
 function useUserSession(initialUser) {
-  return;
+  useEffect(() => {
+    // Update the __session cookies
+    return onIdTokenChanged(async (user) => {
+      if (user) {
+        const idToken = await user.getIdToken();
+        await setCookie("__session", idToken);
+      } else {
+        await deleteCookie("__session");
+      }
+      if (initialUser?.uid === user?.uid) {
+        return;
+      }
+      window.location.reload();
+    });
+  }, [initialUser]);
+
+  return initialUser;
 }
 
+// Export the function Header to files that needs it
 export default function Header({ initialUser }) {
   const user = useUserSession(initialUser);
 
@@ -25,7 +44,7 @@ export default function Header({ initialUser }) {
     event.preventDefault();
     signInWithGoogle();
   };
-
+  // Returns JSX code displaying user info
   return (
     <header>
       <Link href="/" className="logo">
