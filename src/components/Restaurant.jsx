@@ -46,7 +46,7 @@ export default function Restaurant({
     setIsOpen(false);
     setReview({ rating: 0, text: "" });
   };
-
+  // Callback function when a change is made to resturant collection
   useEffect(() => {
     return getRestaurantSnapshotById(id, (data) => {
       setRestaurantDetails(data);
