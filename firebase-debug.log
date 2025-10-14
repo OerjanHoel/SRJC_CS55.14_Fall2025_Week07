@@ -1,0 +1,43 @@
+[debug] [2025-10-14T01:31:56.246Z] ----------------------------------------------------------------------
+[debug] [2025-10-14T01:31:56.249Z] Command:       /home/gooseking/.nvm/versions/node/v24.6.0/bin/node /home/gooseking/Documents/GitHub/School_BackEnd/SRJC_CS55.14_Fall2025_Week07/node_modules/firebase-tools/lib/bin/firebase.js apphosting:secrets:set GEMINI_API_KEY
+[debug] [2025-10-14T01:31:56.249Z] CLI Version:   14.18.0
+[debug] [2025-10-14T01:31:56.249Z] Platform:      linux
+[debug] [2025-10-14T01:31:56.249Z] Node Version:  v24.6.0
+[debug] [2025-10-14T01:31:56.250Z] Time:          Mon Oct 13 2025 18:31:56 GMT-0700 (Pacific Daylight Time)
+[debug] [2025-10-14T01:31:56.250Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-10-14T01:31:56.544Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-10-14T01:31:56.544Z] > authorizing via signed-in user (ohoel@bearcubs.santarosa.edu)
+[debug] [2025-10-14T01:31:56.545Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-10-14T01:31:56.545Z] > authorizing via signed-in user (ohoel@bearcubs.santarosa.edu)
+[debug] [2025-10-14T01:31:56.545Z] [iam] checking project week-7-codelabs for permissions ["firebase.projects.get","secretmanager.secrets.create","secretmanager.secrets.get","secretmanager.secrets.getIamPolicy","secretmanager.secrets.setIamPolicy","secretmanager.secrets.update","secretmanager.versions.add"]
+[debug] [2025-10-14T01:31:56.546Z] Checked if tokens are valid: true, expires at: 1760408994597
+[debug] [2025-10-14T01:31:56.547Z] Checked if tokens are valid: true, expires at: 1760408994597
+[debug] [2025-10-14T01:31:56.548Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/week-7-codelabs:testIamPermissions [none]
+[debug] [2025-10-14T01:31:56.548Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/week-7-codelabs:testIamPermissions x-goog-quota-user=projects/week-7-codelabs
+[debug] [2025-10-14T01:31:56.548Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/week-7-codelabs:testIamPermissions {"permissions":["firebase.projects.get","secretmanager.secrets.create","secretmanager.secrets.get","secretmanager.secrets.getIamPolicy","secretmanager.secrets.setIamPolicy","secretmanager.secrets.update","secretmanager.versions.add"]}
+[debug] [2025-10-14T01:31:56.893Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/week-7-codelabs:testIamPermissions 200
+[debug] [2025-10-14T01:31:56.894Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/week-7-codelabs:testIamPermissions {"permissions":["firebase.projects.get","secretmanager.secrets.create","secretmanager.secrets.get","secretmanager.secrets.getIamPolicy","secretmanager.secrets.setIamPolicy","secretmanager.secrets.update","secretmanager.versions.add"]}
+[debug] [2025-10-14T01:31:56.895Z] Checked if tokens are valid: true, expires at: 1760408994597
+[debug] [2025-10-14T01:31:56.895Z] Checked if tokens are valid: true, expires at: 1760408994597
+[debug] [2025-10-14T01:31:56.896Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/week-7-codelabs [none]
+[debug] [2025-10-14T01:31:57.056Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/week-7-codelabs 200
+[debug] [2025-10-14T01:31:57.056Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/week-7-codelabs {"projectNumber":"42045085535","projectId":"week-7-codelabs","lifecycleState":"ACTIVE","name":"Week-7-Codelabs","labels":{"firebase":"enabled","firebase-core":"disabled"},"createTime":"2025-10-06T21:55:11.776476Z","parent":{"type":"organization","id":"631909676763"}}
+[debug] [2025-10-14T01:31:57.057Z] Checked if tokens are valid: true, expires at: 1760408994597
+[debug] [2025-10-14T01:31:57.058Z] Checked if tokens are valid: true, expires at: 1760408994597
+[debug] [2025-10-14T01:31:57.058Z] >>> [apiv2][query] GET https://secretmanager.googleapis.com/v1/projects/week-7-codelabs/secrets/GEMINI_API_KEY [none]
+[debug] [2025-10-14T01:31:57.275Z] <<< [apiv2][status] GET https://secretmanager.googleapis.com/v1/projects/week-7-codelabs/secrets/GEMINI_API_KEY 200
+[debug] [2025-10-14T01:31:57.275Z] <<< [apiv2][body] GET https://secretmanager.googleapis.com/v1/projects/week-7-codelabs/secrets/GEMINI_API_KEY {"name":"projects/42045085535/secrets/GEMINI_API_KEY","replication":{"automatic":{}},"createTime":"2025-10-14T01:29:57.632295Z","labels":{"firebase-managed":"apphosting"},"etag":"\"1641145267e5b5\""}
+[debug] [2025-10-14T01:32:00.216Z] ExitPromptError: User force closed the prompt with SIGINT
+    at Interface.sigint (/home/gooseking/Documents/GitHub/School_BackEnd/SRJC_CS55.14_Fall2025_Week07/node_modules/@inquirer/core/dist/commonjs/lib/create-prompt.js:101:37)
+    at Interface.emit (node:events:508:28)
+    at Interface.emit (node:domain:489:12)
+    at [_ttyWrite] [as _ttyWrite] (node:internal/readline/interface:1315:18)
+    at ReadStream.onkeypress (node:internal/readline/interface:284:20)
+    at ReadStream.emit (node:events:520:35)
+    at ReadStream.emit (node:domain:489:12)
+    at emitKeys (node:internal/readline/utils:371:14)
+    at emitKeys.next (<anonymous>)
+    at ReadStream.onData (node:internal/readline/emitKeypressEvents:64:36)
+[error] 
+[error] Error: An unexpected error has occurred.
