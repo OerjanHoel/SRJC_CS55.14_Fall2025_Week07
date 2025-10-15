@@ -3,9 +3,10 @@
 // This components handles the review dialog and uses a next.js feature known as Server Actions to handle the form submission
 
 import { useEffect, useLayoutEffect, useRef } from "react";
-import RatingPicker from "@/src/components/RatingPicker.jsx";
-import { handleReviewFormSubmission } from "@/src/app/actions.js";
+import RatingPicker from "@/src/components/RatingPicker.jsx"; // RatingPicker allow setting rating
+import { handleReviewFormSubmission } from "@/src/app/actions.js"; // Import function that saves review to DB
 
+// Variable declearing review dialog box
 const ReviewDialog = ({
   isOpen,
   handleClose,
@@ -24,14 +25,14 @@ const ReviewDialog = ({
       dialog.current.close();
     }
   }, [isOpen, dialog]);
-
+  // Variable for click 
   const handleClick = (e) => {
     // close if clicked outside the modal
     if (e.target === dialog.current) {
       handleClose();
     }
   };
-
+  // JSX Code returned when modal is called
   return (
     <dialog ref={dialog} onMouseDown={handleClick}>
       <form
@@ -81,4 +82,4 @@ const ReviewDialog = ({
   );
 };
 
-export default ReviewDialog;
+export default ReviewDialog; // Exporting function to be used in other file

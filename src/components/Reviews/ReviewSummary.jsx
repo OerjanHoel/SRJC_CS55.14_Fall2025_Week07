@@ -1,9 +1,10 @@
-import { gemini20Flash, googleAI } from "@genkit-ai/googleai";
-import { genkit } from "genkit";
-import { getReviewsByRestaurantId } from "@/src/lib/firebase/firestore.js";
-import { getAuthenticatedAppForUser } from "@/src/lib/firebase/serverApp";
-import { getFirestore } from "firebase/firestore";
+import { gemini20Flash, googleAI } from "@genkit-ai/googleai"; // Import the AI 
+import { genkit } from "genkit"; // Genereating kit
+import { getReviewsByRestaurantId } from "@/src/lib/firebase/firestore.js"; // Import of the resturant review data form DB
+import { getAuthenticatedAppForUser } from "@/src/lib/firebase/serverApp"; // Import user authentication
+import { getFirestore } from "firebase/firestore"; // Import of Firestore DB
 
+// Export AI gengerated summary
 export async function GeminiSummary({ restaurantId }) {
   const { firebaseServerApp } = await getAuthenticatedAppForUser();
   const reviews = await getReviewsByRestaurantId(
@@ -11,7 +12,9 @@ export async function GeminiSummary({ restaurantId }) {
     restaurantId
   );
 
+  // Variable howlding review seperator
   const reviewSeparator = "@";
+  // Gemini prompt to write review summary
   const prompt = `
     Based on the following restaurant reviews, 
     where each review is separated by a '${reviewSeparator}' character, 
@@ -19,7 +22,7 @@ export async function GeminiSummary({ restaurantId }) {
 
     Here are the reviews: ${reviews.map((review) => review.text).join(reviewSeparator)}
   `;
-
+  // Testing to see if it is has Gemini AI API Key
   try {
     if (!process.env.GEMINI_API_KEY) {
       // Make sure GEMINI_API_KEY environment variable is set:
@@ -35,7 +38,7 @@ export async function GeminiSummary({ restaurantId }) {
       model: gemini20Flash, // set default model
     });
     const { text } = await ai.generate(prompt);
-
+    // Creates a JSX with summary
     return (
       <div className="restaurant__review_summary">
         <p>{text}</p>
@@ -47,7 +50,7 @@ export async function GeminiSummary({ restaurantId }) {
     return <p>Error summarizing reviews.</p>;
   }
 }
-
+// Export of skeleton(Shows when AI is working on summary)
 export function GeminiSummarySkeleton() {
   return (
     <div className="restaurant__review_summary">

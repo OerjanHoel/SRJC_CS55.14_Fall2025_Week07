@@ -1,4 +1,5 @@
-import { generateFakeRestaurantsAndReviews } from "@/src/lib/fakeRestaurants.js";
+import { generateFakeRestaurantsAndReviews } from "@/src/lib/fakeRestaurants.js"; // Imports ability to add more fake restaurants
+
 
 import {
   collection,
@@ -14,10 +15,11 @@ import {
   where,
   addDoc,
   getFirestore,
-} from "firebase/firestore";
+} from "firebase/firestore"; // Imports of neede modules from firestore
 
-import { db } from "@/src/lib/firebase/clientApp";
+import { db } from "@/src/lib/firebase/clientApp"; // Import of db from firestore
 
+// Function to update image and restaurant id
 export async function updateRestaurantImageReference(
   restaurantId,
   publicImageUrl
@@ -28,6 +30,7 @@ export async function updateRestaurantImageReference(
   }
 }
 
+// Update for rating with timestamp
 const updateWithRating = async (
   transaction,
   docRef,
@@ -52,6 +55,7 @@ const updateWithRating = async (
   });
 };
 
+// Funtion binding review to restaurant in database
 export async function addReviewToRestaurant(db, restaurantId, review) {
   if (!restaurantId) {
     throw new Error("No restaurant ID has been provided.");
@@ -67,7 +71,6 @@ export async function addReviewToRestaurant(db, restaurantId, review) {
       collection(db, `restaurants/${restaurantId}/ratings`)
     );
 
-    // corrected line
     await runTransaction(db, transaction =>
       updateWithRating(transaction, docRef, newRatingDocument, review)
     );
@@ -143,6 +146,7 @@ export function getRestaurantsSnapshot(cb, filters = {}) {
   });
 }
 
+// Function to return data from Firebase DB
 export async function getRestaurantById(db, restaurantId) {
   if (!restaurantId) {
     console.log("Error: Invalid ID received: ", restaurantId);
@@ -160,6 +164,7 @@ export function getRestaurantSnapshotById(restaurantId, cb) {
   return;
 }
 
+// Function to show review for specific restaurant
 export async function getReviewsByRestaurantId(db, restaurantId) {
   if (!restaurantId) {
     console.log("Error: Invalid restaurantId received: ", restaurantId);
@@ -170,7 +175,7 @@ export async function getReviewsByRestaurantId(db, restaurantId) {
     collection(db, "restaurants", restaurantId, "ratings"),
     orderBy("timestamp", "desc")
   );
-
+  // Creates the JS array with reviews
   const results = await getDocs(q);
   return results.docs.map((doc) => {
     return {
@@ -181,7 +186,7 @@ export async function getReviewsByRestaurantId(db, restaurantId) {
     };
   });
 }
-
+// Function to list restaurnt query
 export function getReviewsSnapshotByRestaurantId(restaurantId, cb) {
   if (!restaurantId) {
     console.log("Error: Invalid restaurantId received: ", restaurantId);
@@ -204,7 +209,7 @@ export function getReviewsSnapshotByRestaurantId(restaurantId, cb) {
     cb(results);
   });
 }
-
+// Function to add more fake restaurants
 export async function addFakeRestaurantsAndReviews() {
   const data = await generateFakeRestaurantsAndReviews();
   for (const { restaurantData, ratingsData } of data) {
